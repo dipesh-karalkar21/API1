@@ -14,7 +14,7 @@ module.exports = async()=>{
 
     const service = google.sheets({
         version:'v4',
-        auth : auth
+        auth : client
     })
 
     const data = await service.spreadsheets.values.get({
