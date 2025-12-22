@@ -1,5 +1,4 @@
 const {google} = require("googleapis")
-require("dotenv").config()
 
 const auth = new google.auth.GoogleAuth({
     credentials:{
