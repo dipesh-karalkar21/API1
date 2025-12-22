@@ -8,7 +8,7 @@ const auth = new google.auth.GoogleAuth({
     scopes:["https://www.googleapis.com/auth/spreadsheets.readonly"]
 })
 
-module.exports = async()=>{
+module.exports = async(req,res)=>{
     const client = await auth.getClient()
 
     const service = google.sheets({
@@ -23,6 +23,6 @@ module.exports = async()=>{
 
     console.log(data.data.values)
     data.data.values.pop()
-    return data.data.values
+    res.status(200).json(data.data.values)
 
 }
