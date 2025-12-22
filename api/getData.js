@@ -1,0 +1,29 @@
+const {google} = require("googleapis")
+require("dotenv").config()
+
+const auth = new google.auth.GoogleAuth({
+    credentials:{
+        client_email:process.env.GOOGLE_EMAIL,
+        private_key:process.env.GOOGLE_KEY.replaceAll("\\n","\n"),
+    },
+    scopes:["https://www.googleapis.com/auth/spreadsheets.readonly"]
+})
+
+module.exports = async()=>{
+    const client = await auth.getClient()
+
+    const service = google.sheets({
+        version:'v4',
+        auth : auth
+    })
+
+    const data = await service.spreadsheets.values.get({
+        spreadsheetId:"12TkW5pyqeEGvdZ0Y5rZaTyq2TN8-1-3xuZwLD-gR55U",
+        range:"add colum for event categories start date end dat...!A1:L21"
+    })
+
+    console.log(data.data.values)
+    data.data.values.pop()
+    return data.data.values
+
+}
