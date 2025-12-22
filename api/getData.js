@@ -22,7 +22,7 @@ module.exports = async(req,res)=>{
     })
 
     console.log(data.data.values)
-    data.data.values.pop()
-    res.status(200).json(data.data.values)
+    
+    return res.json(data.data.values)
 
 }
