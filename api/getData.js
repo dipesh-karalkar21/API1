@@ -18,19 +18,11 @@ module.exports = async(req,res)=>{
 
     const data = await service.spreadsheets.values.get({
         spreadsheetId:"12TkW5pyqeEGvdZ0Y5rZaTyq2TN8-1-3xuZwLD-gR55U",
-        range:"add colum for event categories start date end dat...!A1:L21"
+        range:"add colum for event categories start date end dat...!A:ZZZ"
     })
 
     console.log(data.data.values)
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-
-    // Handle preflight request
-    if (req.method === "OPTIONS") {
-        return res.status(200).end();
-    }
+    
     return res.json(data.data.values)
-
 
 }
