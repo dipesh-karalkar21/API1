@@ -9,6 +9,10 @@ const auth = new google.auth.GoogleAuth({
 })
 
 module.exports = async(req,res)=>{
+    
+    res.header("Access-Control-Allow-Origin","*")
+    res.header("Access-Control-Allow-Methods","GET,POST,OPTIONS")
+    
     const client = await auth.getClient()
 
     const service = google.sheets({
